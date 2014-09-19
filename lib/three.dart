@@ -47,6 +47,10 @@ part 'src/loaders/json_loader.dart';
 part 'src/loaders/image_loader.dart';
 part 'src/loaders/stl_loader.dart';
 part 'src/loaders/obj_loader.dart';
+part 'src/loaders/RSMtlLoader.dart';
+part 'src/loaders/RSObjLoader.dart';
+part 'src/loaders/RSMtlObjLoader.dart';
+
 
 part 'extras/geometries/circle_geometry.dart';
 part 'extras/geometries/convex_geometry.dart';
