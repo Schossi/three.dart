@@ -186,7 +186,8 @@ class MaterialCreator{
 
  Map<String,dynamic> params=new Map<String,dynamic>();
 
- MeshPhongMaterial newMat=new MeshPhongMaterial();
+ MeshPhongMaterial newMat=new MeshPhongMaterial()
+ ..side=2;
 
  var diffuse;
 
