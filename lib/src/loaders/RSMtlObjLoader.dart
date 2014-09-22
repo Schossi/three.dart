@@ -43,6 +43,13 @@ class RSMtlObjLoader{
     this.mesh=new Mesh(combGeo,combMat);
     this.completer.complete(this.mesh);
   }
+  
+  Mesh getAnother(){
+        MeshFaceMaterial combMat =new MeshFaceMaterial(this.matCreator.materials.values.toList());
+        Geometry combGeo=object3d.children[0].geometry;
+        combGeo.materials=matCreator.materials.values.toList();
+        return new Mesh(combGeo,combMat);
+  }
     
  
 }

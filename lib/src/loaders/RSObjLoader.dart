@@ -9,6 +9,9 @@ part of three;
 
 class RSObjLoader extends Loader {
 
+  int facesHandledCount=0;
+  List<String> unhandledLines=new List<String>();
+  
   num currentIndex;
   bool startedParsing=false;
   Map<String,int> matIndexes;
@@ -50,6 +53,8 @@ class RSObjLoader extends Loader {
       ];
 
   _handle_face_line(geometry, vertices, normals, uvs, faces, [uvsLine = null, normals_inds = null]) {
+    facesHandledCount++;
+    
     if (faces[ 3 ] == null)  {
       geometry.faces.add(_create_face(faces[0], faces[1], faces[2], vertices, normals, normals_inds));
       if (uvsLine != null && uvsLine.length > 0) {
@@ -202,6 +207,8 @@ class RSObjLoader extends Loader {
         } else if (line.contains(new RegExp(r"^s "))) {
 
 
+        } else {
+          this.unhandledLines.add(line);
         }
       }
     });

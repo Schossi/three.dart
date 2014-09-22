@@ -45,6 +45,7 @@ class OBJLoader extends Loader {
       ];
 
   _handle_face_line(geometry, vertices, normals, uvs, faces, [uvsLine = null, normals_inds = null]) {
+    
     if (faces[ 3 ] == null)  {
       geometry.faces.add(_create_face(faces[0], faces[1], faces[2], vertices, normals, normals_inds));
       if (uvsLine != null && uvsLine.length > 0) {
