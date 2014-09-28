@@ -13,6 +13,10 @@ class Ray {
   num near,
       far;
 
+  static int parallels=0;
+  static int checkedFaces=0;
+  static int intersectCount=0;
+  
   final num precision;
 
   Ray( [this.origin, this.direction, this.near = 0, this.far = double.INFINITY] )
@@ -121,11 +125,15 @@ class Ray {
       int fl = geometry.faces.length;
 
       for (var f = 0; f < fl; f++) {
-
+        checkedFaces++;
+        
         face = geometry.faces[f];
 
         material = isFaceMaterial == true ? geometryMaterials[ face.materialIndex ] : object.material;
-        if ( material == null ) continue;
+        if ( material == null ){ 
+          parallels++;
+          continue;
+        }
 
         side = material.side;
 
@@ -183,6 +191,7 @@ class Ray {
                 object: object
             );
 
+            intersectCount++;
             intersects.add( intersect );
           }
         }
@@ -192,15 +201,21 @@ class Ray {
     return intersects;
   }
 
-  List<Intersect> intersectObjects( List<Object3D> objects ) {
+  List<Intersect> intersectObjects( List<Object3D> objects,{recursive:false} ) {
     int l = objects.length;
     List<Intersect> intersects = [];
 
-    objects.forEach((o) => intersects.addAll(intersectObject(o)));
+    objects.forEach((o) => intersects.addAll(intersectObject(o,recursive: recursive)));
 
     intersects.sort( ( a, b ) => a.distance.compareTo(b.distance) );
 
     return intersects;
+  }
+  
+  static resetDebugCounters(){
+    checkedFaces=0;
+    intersectCount=0;
+    parallels=0;
   }
 
 }

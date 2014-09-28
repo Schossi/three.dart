@@ -5863,6 +5863,7 @@ class WebGLRenderer implements Renderer {
         		// Grow the lists
 				pointColors.length = pointOffset + 3;
 				pointPositions.length = pointOffset + 3;
+        
 
 				if ( gammaInput ) {
 
@@ -5882,6 +5883,9 @@ class WebGLRenderer implements Renderer {
 
 				if (pointDistances==null) { pointDistances = new List(); pointDistances.add(0); }
 				if (pointDistances.length == 0) {pointDistances.add(0);}
+				
+				while(pointDistances.length<=pointLength) pointDistances.add(0);
+				
 				pointDistances[ pointLength ] = distance;
 
 				pointLength += 1;
